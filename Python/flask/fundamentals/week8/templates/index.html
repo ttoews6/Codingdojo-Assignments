@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Pet Adoption</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row button">
+            <a href="/clear">Reset</a>
+            <p>Total Adoptions Made: ${{session.adopt}}.00</p>
+        </div>
+        <div class="row selections">
+            <div class="choices">
+                <h3>Adopt A Cat!</h3>
+                <img src="{{ url_for('static', filename='images/cat.jpeg') }}"></img>
+                <p>Cost of adopting a cat! <br>( 15 to 30 Dollars )</p>
+                <form action="/adopt" method="post">
+                    <input type="hidden" name="pet" value="cat">
+                    <input type="submit" value="Adopt A Cat">
+                </form>
+            </div>
+            <div class="choices">
+                <h3>Adopt A Dog!</h3>
+                <img src="{{ url_for('static', filename='images/dog.jpeg') }}"></img>
+                <p>Cost of adopting a dog! <br>( 30 to 45 Dollars )</p>
+                <form action="/adopt" method="post">
+                    <input type="hidden" name="pet" value="dog">
+                    <input type="submit" value="Adopt A Dog">
+                </form>
+            </div>
+            <div class="choices">
+                <h3>Adopt A Bird!</h3>
+                <img src="{{ url_for('static', filename='images/bird.jpeg') }}"></img>
+                <p>Cost of adopting a bird! <br>( 20 to 22 Dollars )</p>
+                <form action="/adopt" method="post">
+                    <input type="hidden" name="pet" value="bird">
+                    <input type="submit" value="Adopt A Bird">
+                </form>
+            </div>
+            <div class="choices">
+                <h3>Make A Donation!</h3>
+                <img src="{{ url_for('static', filename='images/donate.png') }}"></img>
+                <p>Make A Donation! <br>( 15 to 2000 Dollars )</p>
+                <form action="/adopt" method="post">
+                    <input type="hidden" name="pet" value="donation">
+                    <input type="submit" value="Make A Donation">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

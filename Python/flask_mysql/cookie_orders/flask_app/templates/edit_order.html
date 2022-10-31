@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <div class="container">
+        <div class="sub-titles d-flex justify-content-between align-items-center">
+            <h1>Change Order</h1>
+            <a href="/">Back to purchases</a>
+        </div>
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+        <form action="/update/{{cookie.id}}" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="first_name" value="{{cookie.first_name}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="cookie_type">Cookie Type</label>
+                <input type="text" name="cookie_type" value="{{cookie.cookie_type}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="num_boxes">Number of Boxes:</label>
+                <input type="number" name="num_boxes" value="{{cookie.num_boxes}}" class="form-control">
+            </div>
+            <br>
+            <button class="btn btn-primary">Log</button>
+        </form>
+    </div>
+</body>
+</html>

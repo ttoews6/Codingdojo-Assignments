@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="container">
+        <div class="total">
+            <label for="gold">Your Gold:</label>
+            <p class="gold">{{session.gold}}</p>
+        </div>
+        <a href="/clear"><button>Reset Gold</button></a>
+        <div class="row selection">
+            <div class="options">
+                <h2>Farm</h2>
+                <p>(earns 10-20 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="ninja_gold" value="farm">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="options">
+                <h2>Cave</h2>
+                <p>(earns 5-10 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="ninja_gold" value="cave">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="options">
+                <h2>House</h2>
+                <p>(earns 2-5 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="ninja_gold" value="house">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="options">
+                <h2>Casino</h2>
+                <p>(earns/takes 0-50 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="ninja_gold" value="casino">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+        </div>
+        <p>Activites:</p>
+        <div class="log">
+            {% for i in session.activity: %}
+                {% if session.money > 0: %}
+                    <p style="color: green">{{ i }}</p>
+                {% endif %}
+            {% endfor %}
+            {% for i in session.activity: %}
+                {% if session.money < 0: %}
+                    <p style="color: red">{{ i }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

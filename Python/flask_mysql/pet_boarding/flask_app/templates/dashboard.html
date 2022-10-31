@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container pt-4">
+        <h1>{{user.first_name}}, here are the current pets in boarding</h1>
+        <a href="/add_pet">Add A Pet</a> | 
+        <a href="/logout">Logout</a>
+        <div class="row">
+            <table class="table table-bordered table-dark mt-2">
+                <thead>
+                    <tr>
+                        <th>Pet Name:</th>
+                        <th>Breed:</th>
+                        <th>Gender:</th>
+                        <th>Information:</th>
+                        <th>Number of Likes</th>
+                        <th>Like / Dislike</th>
+                        <th>Actions:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pet in all %}
+                    <tr>
+                        <td>{{pet.name}}</td>
+                        <td>{{pet.breed}}</td>
+                        <td>{{pet.gender | capitalize}}</td>
+                        <td>{{pet.information}}</td>
+                        <td>{{pet.all_who_liked | length}}</td>
+                        <td>
+                            {% if session.user_id in pet.all_who_liked | map( attribute = 'id') %}
+                            <a href="/dislike/{{pet.id}}">Dislike</a></td>
+                            {% else %}
+                            <a href="/like/{{pet.id}}">Like</a>
+                            {% endif %}
+                        <td><a href="/one_pet/{{pet.id}}">Show Pet</a> | <a href="/edit_pet/{{pet.id}}">Edit</a> | <a href="/delete_pet/{{pet.id}}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p class="footer d-flex justify-content-center mt-4">&copy; Copyright - Pet Boarding Co.</p>
+</body>
+</html>

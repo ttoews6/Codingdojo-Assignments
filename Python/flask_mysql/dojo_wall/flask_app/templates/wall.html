@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>The Wall</title>
+</head>
+<body>
+    <div class="container mt-2">
+        <div class="header d-flex justify-content-between">
+            <p>Coding Dojo Wall</p>
+            <p>Welcome, {{user.first_name}}</p>
+            <a href="/logout">logout</a>
+        </div>
+        <hr>
+        <div class="post">
+            <p>What's on your mind? Create a new post:</p>
+            <form action="/create_post" method="post">
+                <div class="form-group">
+                    <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+                    <br>
+                    <button class="btn btn-primary">Publish</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="community-posts">
+            <h2>All Community Posts</h2>
+            {% for post in all %}
+            <p>{{post.user.first_name}}</p>
+            <p>{{post.content}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

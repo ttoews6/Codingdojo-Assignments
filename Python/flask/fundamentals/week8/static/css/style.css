@@ -1,0 +1,19 @@
+.container {
+    margin: 50px auto;
+}
+
+.selections {
+    display: flex;
+    justify-content: center;
+}
+
+.choices {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+img {
+    height: 150px;
+}
